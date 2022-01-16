@@ -1,3 +1,16 @@
+let myLibrary = [
+    { title: 'Yvain, ou le chevalier au lion',
+      author: 'Chrétien de Troyes',
+      pages: '300 pages',
+      read: true
+    },
+    { title: 'Madame Bovary',
+      author: 'Gustave Flaubert',
+      pages: '500 pages',
+      read: true
+    },
+];
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -8,5 +21,11 @@ function Book(title, author, pages, read) {
     };
 };
 
-const book1 = new Book('Yvain', 'de Troyes', '300', 'great read');
-console.log(book1.info())
+function addBookToLibrary() {
+
+};
+
+
+
+
+
