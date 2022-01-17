@@ -25,6 +25,18 @@ function addBookToLibrary() {
 
 };
 
+// Create individual cards from myLibrary array
+const library = document.querySelector('#library');
+
+function createBookCards() {
+  for (let i = 0; i < myLibrary.length; i++) {
+    const card = document.createElement('div');
+      card.classList.add('card');
+      card.textContent = 'test';
+  
+    library.appendChild(card);    
+  };
+};
 
 
 
