@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+.card {
+    border: 1px solid #eee;
+    box-shadow: 2px 4px 16px rgba(0,0,0,.06);
+    border-radius: 4px;
+    padding: 32px;
+    flex: 1 0 auto;
+    margin: 10px;
+    max-width: 200px;
+  }
