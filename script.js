@@ -1,14 +1,14 @@
 let myLibrary = [
-    { title: 'Yvain, ou le chevalier au lion',
-      author: 'Chrétien de Troyes',
-      pages: '300 pages',
-      read: true
-    },
-    { title: 'Madame Bovary',
-      author: 'Gustave Flaubert',
-      pages: '500 pages',
-      read: true
-    },
+    // { title: 'Yvain, ou le chevalier au lion',
+    //   author: 'Chrétien de Troyes',
+    //   pages: '300 pages',
+    //   read: true
+    // },
+    // { title: 'Madame Bovary',
+    //   author: 'Gustave Flaubert',
+    //   pages: '500 pages',
+    //   read: true
+    // },
 ];
 
 function Book(title, author, pages, read) {
@@ -17,27 +17,35 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.info = function() {
-        return this.title + ', ' + this.author + ', ' + this.pages + ', ' + this.read
+        return this.title + ', by ' + this.author + ', ' + this.pages + ', ' + this.read
     };
 };
 
 function addBookToLibrary() {
+  let title = 'Yvain, ou le chevalier au lion'; // get value from form 
+  let author = 'Chrétien de Troyes'; // get value from form 
+  let pages = '300 pages'; // get value from form 
+  let read = true; // get value from form 
 
+  const yvain = new Book(title, author, pages, read);
+  myLibrary.push(yvain);
+  createBookCard();
 };
 
-// Create individual cards from myLibrary array
 const library = document.querySelector('#library');
 
-function createBookCards() {
-  for (let i = 0; i < myLibrary.length; i++) {
+function createBookCard(title, author, pages, read) {
     const card = document.createElement('div');
-      card.classList.add('card');
-      card.textContent = 'test';
-  
-    library.appendChild(card);    
-  };
+        card.classList.add('card');
+        card.textContent = generateCardText();
+    
+    library.appendChild(card);
 };
 
+function generateCardText() {
+    myLibrary.forEach(function(index) {
+      console.log(index.info());
+    });
+};
 
-
-
+addBookToLibrary();
