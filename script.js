@@ -27,8 +27,9 @@ function addBookToLibrary() {
   let pages = '300 pages'; // get value from form 
   let read = true; // get value from form 
 
-  const yvain = new Book(title, author, pages, read);
-  myLibrary.push(yvain);
+  const newBook = new Book(title, author, pages, read);
+  myLibrary.push(newBook);
+  console.log(newBook.info());
   createBookCard(title, author, pages, read);
 };
 
@@ -71,5 +72,10 @@ function generateCardText() {
       console.log(index.info());
     });
 };
+
+const newBookButton = document.querySelector('#newBookButton');
+    newBookButton.addEventListener('click', () => {
+        addBookToLibrary()
+    });
 
 addBookToLibrary();
