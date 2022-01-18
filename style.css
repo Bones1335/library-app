@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 .card {
@@ -9,5 +11,6 @@
     padding: 32px;
     flex: 1 0 auto;
     margin: 10px;
-    max-width: 200px;
-  }
+    height: 400px;
+    max-width: 400px;
+}

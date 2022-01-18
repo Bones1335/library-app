@@ -29,7 +29,7 @@ function addBookToLibrary() {
 
   const yvain = new Book(title, author, pages, read);
   myLibrary.push(yvain);
-  createBookCard();
+  createBookCard(title, author, pages, read);
 };
 
 const library = document.querySelector('#library');
