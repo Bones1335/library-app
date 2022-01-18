@@ -37,9 +37,33 @@ const library = document.querySelector('#library');
 function createBookCard(title, author, pages, read) {
     const card = document.createElement('div');
         card.classList.add('card');
-        card.textContent = generateCardText();
     
     library.appendChild(card);
+
+    const titleText = document.createElement('div');
+        titleText.classList.add('title');
+    
+    card.appendChild(titleText);
+
+    const authorText = document.createElement('div');
+        authorText.classList.add('author');
+
+    card.appendChild(authorText);
+
+    const pagesText = document.createElement('div');
+        pagesText.classList.add('pages');
+    
+    card.appendChild(pagesText);
+
+    const readText = document.createElement('div');
+        readText.classList.add('read');
+
+    card.appendChild(readText);
+
+    titleText.textContent = 'Title: ' + title;
+    authorText.textContent = 'Author: ' + author;
+    pagesText.textContent = 'Pages: ' + pages;
+    readText.textContent = 'Read: ' + read;
 };
 
 function generateCardText() {
