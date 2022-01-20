@@ -41,6 +41,12 @@ function createBookCard(title, author, pages, read) {
     
     library.appendChild(card);
 
+    const deleteBtn = document.createElement('button');
+        deleteBtn.classList.add('deleteBtn');
+        deleteBtn.textContent = 'X';
+
+    card.appendChild(deleteBtn);
+
     const titleText = document.createElement('div');
         titleText.classList.add('title');
     
@@ -75,7 +81,16 @@ function generateCardText() {
 
 const newBookButton = document.querySelector('#newBookButton');
     newBookButton.addEventListener('click', () => {
-        addBookToLibrary()
+        openNewBookWindow();
+        
     });
+
+function openNewBookWindow() {
+    document.getElementById('newBookWindow').style.display = 'block';
+}
+
+function closeNewBookWindow() {
+    document.getElementById('newBookWindow').style.display = 'none';
+}
 
 addBookToLibrary();
