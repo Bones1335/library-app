@@ -1,14 +1,14 @@
 let myLibrary = [
-    // { title: 'Yvain, ou le chevalier au lion',
-    //   author: 'Chrétien de Troyes',
-    //   pages: '300 pages',
-    //   read: true
-    // },
-    // { title: 'Madame Bovary',
-    //   author: 'Gustave Flaubert',
-    //   pages: '500 pages',
-    //   read: true
-    // },
+    { title: 'Yvain, ou le chevalier au lion',
+      author: 'Chrétien de Troyes',
+      pages: '300 pages',
+      read: true
+    },
+    { title: 'Madame Bovary',
+      author: 'Gustave Flaubert',
+      pages: '500 pages',
+      read: true
+    },
 ];
 
 function Book(title, author, pages, read) {
@@ -25,18 +25,14 @@ function addBookToLibrary() {
   let title = document.getElementById('title').value;
   let author = document.getElementById('author').value;
   let pages = document.getElementById('pages').value; 
-  
   if (document.getElementById('read').checked === true) {
       read = document.getElementById('read').value;
   } else {
       read = false;
   }
 
-
   const newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
-  console.log(newBook.info());
-  createBookCard(title, author, pages, read);
 };
 
 const library = document.querySelector('#library');
@@ -79,9 +75,13 @@ function createBookCard(title, author, pages, read) {
     readText.textContent = 'Read: ' + read;
 };
 
-function generateCardText() {
+function pullLibraryValues() {
     myLibrary.forEach(function(index) {
-      console.log(index.info());
+      title = index.title;
+      author = index.author;
+      pages = index.pages;
+      read = index.read;
+      createBookCard(title, author, pages, read);
     });
 };
 
@@ -93,6 +93,7 @@ const newBookButton = document.querySelector('#newBookButton');
 const newBookSubmit = document.querySelector('#submit');
     newBookSubmit.addEventListener('click', () => {
         addBookToLibrary();
+        pullLibraryValues();
         closeNewBookWindow();
     });
 
@@ -104,4 +105,3 @@ function closeNewBookWindow() {
     document.getElementById('newBookWindow').style.display = 'none';
 }
 
-addBookToLibrary();
