@@ -22,10 +22,16 @@ function Book(title, author, pages, read) {
 };
 
 function addBookToLibrary() {
-  let title = 'Yvain, ou le chevalier au lion'; // get value from form 
-  let author = 'Chrétien de Troyes'; // get value from form 
-  let pages = '300 pages'; // get value from form 
-  let read = true; // get value from form 
+  let title = document.getElementById('title').value;
+  let author = document.getElementById('author').value;
+  let pages = document.getElementById('pages').value; 
+  
+  if (document.getElementById('read').checked === true) {
+      read = document.getElementById('read').value;
+  } else {
+      read = false;
+  }
+
 
   const newBook = new Book(title, author, pages, read);
   myLibrary.push(newBook);
@@ -81,8 +87,13 @@ function generateCardText() {
 
 const newBookButton = document.querySelector('#newBookButton');
     newBookButton.addEventListener('click', () => {
-        openNewBookWindow();
-        
+        openNewBookWindow();   
+    });
+
+const newBookSubmit = document.querySelector('#submit');
+    newBookSubmit.addEventListener('click', () => {
+        addBookToLibrary();
+        closeNewBookWindow();
     });
 
 function openNewBookWindow() {
