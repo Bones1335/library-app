@@ -93,15 +93,24 @@ const newBookButton = document.querySelector('#newBookButton');
 const newBookSubmit = document.querySelector('#submit');
     newBookSubmit.addEventListener('click', () => {
         addBookToLibrary();
-        pullLibraryValues();
+        addNewBookCard();
         closeNewBookWindow();
     });
 
 function openNewBookWindow() {
     document.getElementById('newBookWindow').style.display = 'block';
-}
+};
 
 function closeNewBookWindow() {
     document.getElementById('newBookWindow').style.display = 'none';
-}
+};
 
+function addNewBookCard() {
+    const newBook = myLibrary[myLibrary.length - 1];
+        title = newBook.title;
+        author = newBook.author;
+        pages = newBook.pages;
+        read = newBook.read;
+
+    createBookCard(title, author, pages, read);
+};
