@@ -37,7 +37,7 @@ function addBookToLibrary() {
 
 const library = document.querySelector('#library');
 
-function createBookCard(title, author, pages, read) {
+function createBookCard(title, author, pages, read, dataSet) {
     const card = document.createElement('div');
         card.classList.add('card');
     
@@ -46,6 +46,11 @@ function createBookCard(title, author, pages, read) {
     const deleteBtn = document.createElement('button');
         deleteBtn.classList.add('deleteBtn');
         deleteBtn.textContent = 'X';
+        deleteBtn.dataset.index = dataSet;
+        deleteBtn.addEventListener('click', () => {
+            myLibrary.splice(dataSet, 1);
+            console.table(myLibrary);
+        });
 
     card.appendChild(deleteBtn);
 
@@ -81,7 +86,8 @@ function pullLibraryValues() {
       author = index.author;
       pages = index.pages;
       read = index.read;
-      createBookCard(title, author, pages, read);
+      dataSet = myLibrary.indexOf(index);
+      createBookCard(title, author, pages, read, dataSet);
     });
 };
 
