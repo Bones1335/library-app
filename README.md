@@ -9,4 +9,4 @@ library.
 
 *IMPORTANT NOTE:* While there is a search bar and login button at the top
 of the screen, they are not yet functional. Their functionality will come
-in a later version.
+in a later version. Full graphical design will also come in later versions.
