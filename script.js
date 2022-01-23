@@ -49,7 +49,8 @@ function createBookCard(title, author, pages, read, dataSet) {
         deleteBtn.dataset.index = dataSet;
         deleteBtn.addEventListener('click', () => {
             myLibrary.splice(dataSet, 1);
-            console.table(myLibrary);
+            const parentDiv = deleteBtn.parentNode;
+                parentDiv.remove()
         });
 
     card.appendChild(deleteBtn);
