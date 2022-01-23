@@ -128,12 +128,3 @@ function addNewBookCard() {
         dataSet = newBook.id;
     createBookCard(title, author, pages, read, dataSet);
 };
-
-function updateLibraryIndexes(title) {
-    myLibrary.forEach(function(index) {
-        const dataIndex = document.querySelectorAll('div.title');
-        console.log('help');
-        dataSet = myLibrary.indexOf(index);
-        dataIndex.setAttribute('index', dataSet);
-    });
-};
