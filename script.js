@@ -2,12 +2,14 @@ let myLibrary = [
     { title: 'Yvain, ou le chevalier au lion',
       author: 'Chrétien de Troyes',
       pages: '300 pages',
-      read: true
+      read: true,
+      id: crypto.randomUUID()
     },
     { title: 'Madame Bovary',
       author: 'Gustave Flaubert',
       pages: '500 pages',
-      read: true
+      read: true,
+      id: crypto.randomUUID()
     },
 ];
 
@@ -16,6 +18,7 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = crypto.randomUUID();
     this.info = function() {
         return this.title + ', by ' + this.author + ', ' + this.pages + ', ' + this.read
     };
@@ -40,17 +43,21 @@ const library = document.querySelector('#library');
 function createBookCard(title, author, pages, read, dataSet) {
     const card = document.createElement('div');
         card.classList.add('card');
+        card.dataset.index = dataSet;
     
     library.appendChild(card);
 
     const deleteBtn = document.createElement('button');
         deleteBtn.classList.add('deleteBtn');
         deleteBtn.textContent = 'X';
-        deleteBtn.dataset.index = dataSet;
         deleteBtn.addEventListener('click', () => {
-            myLibrary.splice(dataSet, 1);
+            let bookId = deleteBtn.parentNode.dataset.index;
             const parentDiv = deleteBtn.parentNode;
-                parentDiv.remove()
+                parentDiv.remove();
+            myLibrary = myLibrary.filter((book) => book.id !== bookId);
+
+            console.table(myLibrary);
+            //updateLibraryIndexes(title);
         });
 
     card.appendChild(deleteBtn);
@@ -87,7 +94,7 @@ function pullLibraryValues() {
       author = index.author;
       pages = index.pages;
       read = index.read;
-      dataSet = myLibrary.indexOf(index);
+      dataSet = index.id;
       createBookCard(title, author, pages, read, dataSet);
     });
 };
@@ -118,6 +125,15 @@ function addNewBookCard() {
         author = newBook.author;
         pages = newBook.pages;
         read = newBook.read;
+        dataSet = newBook.id;
+    createBookCard(title, author, pages, read, dataSet);
+};
 
-    createBookCard(title, author, pages, read);
+function updateLibraryIndexes(title) {
+    myLibrary.forEach(function(index) {
+        const dataIndex = document.querySelectorAll('div.title');
+        console.log('help');
+        dataSet = myLibrary.indexOf(index);
+        dataIndex.setAttribute('index', dataSet);
+    });
 };
