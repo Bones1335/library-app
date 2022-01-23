@@ -24,6 +24,20 @@ function Book(title, author, pages, read) {
     };
 };
 
+Book.prototype.readStatus = function() {
+    const readToggle = document.createElement('button');
+    readToggle.classList.add('readToggle');
+    readToggle.textContent = read;
+    card.appendChild(readToggle);
+    
+    readToggle.addEventListener('click', () => {
+        let bookId = readToggle.parentNode.dataset.index;
+        myLibrary.find(book => book.id === bookId).readStatus();
+
+    });
+console.log('help')
+}
+
 function addBookToLibrary() {
   let title = document.getElementById('title').value;
   let author = document.getElementById('author').value;
@@ -51,13 +65,10 @@ function createBookCard(title, author, pages, read, dataSet) {
         deleteBtn.classList.add('deleteBtn');
         deleteBtn.textContent = 'X';
         deleteBtn.addEventListener('click', () => {
-            let bookId = deleteBtn.parentNode.dataset.index;
+            let bookId = deleteBtn.parentNode.dataset.index; // select parentNode's index id 
             const parentDiv = deleteBtn.parentNode;
-                parentDiv.remove();
-            myLibrary = myLibrary.filter((book) => book.id !== bookId);
-
-            console.table(myLibrary);
-            //updateLibraryIndexes(title);
+                parentDiv.remove(); // delete whole card
+            myLibrary = myLibrary.filter((book) => book.id !== bookId); // filter through original array to create new array without deleted book based on the unique id given by crypto.randomUUID()
         });
 
     card.appendChild(deleteBtn);
@@ -82,10 +93,30 @@ function createBookCard(title, author, pages, read, dataSet) {
 
     card.appendChild(readText);
 
+    const readToggle = document.createElement('button');
+        readToggle.classList.add('readToggle');
+        readToggle.textContent = read;
+        readToggle.addEventListener('click', () => {
+            let bookId = readToggle.parentNode.dataset.index;
+            let foundBook = myLibrary.find(book => book.id === bookId);
+            if (foundBook.id === bookId) {
+                if (foundBook.read === true) {
+                    foundBook.read = false
+                    read = false
+                } else if (foundBook.read === false) {
+                    foundBook.read = true
+                    read = true
+                }
+                readToggle.textContent = read;
+            }
+        });
+    
+    card.appendChild(readToggle);
+
     titleText.textContent = 'Title: ' + title;
     authorText.textContent = 'Author: ' + author;
     pagesText.textContent = 'Pages: ' + pages;
-    readText.textContent = 'Read: ' + read;
+    readText.textContent = 'Read: ';
 };
 
 function pullLibraryValues() {
